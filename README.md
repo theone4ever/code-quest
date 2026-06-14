@@ -21,15 +21,17 @@ so it works fully offline.
 The app is an installable **PWA**: once loaded once, it caches itself and runs with
 **zero network** afterwards — perfect for the China trip / flaky connections.
 
-1. **Host it once on HTTPS.** Drag this folder onto [Netlify Drop](https://app.netlify.com/drop),
-   or use [Cloudflare Pages](https://pages.cloudflare.com) / [GitHub Pages](https://pages.github.com).
-   You'll get a URL like `https://aurora-codequest.netlify.app`.
-   *(A service worker — what enables offline — only installs over HTTPS, so this one-time
-   hosting step is needed; a plain `http://` laptop address won't work on iOS.)*
-2. **On the iPad, over home wifi**, open that URL in **Safari**.
-3. Tap **Share → Add to Home Screen**. An app icon appears.
-4. Open it from the home screen **once while still online** so it finishes caching.
-5. Done — it now works **offline, full-screen, like a native app**. Her progress saves on the iPad.
+It's already hosted on **GitHub Pages**:
+
+### 👉 https://theone4ever.github.io/code-quest/
+
+1. **On the iPad, over home wifi**, open that URL in **Safari**.
+2. Tap **Share → Add to Home Screen**. An app icon appears.
+3. Open it from the home screen **once while still online** so it finishes caching.
+4. Done — it now works **offline, full-screen, like a native app**. Her progress saves on the iPad.
+
+*(The service worker that enables offline only installs over HTTPS, which is why it's hosted
+rather than opened from a file — a plain `http://` laptop address won't work on iOS.)*
 
 > Do steps 1–4 **before you travel**. After that, the lessons need no connection at all.
 > Only the AI tutor (Nova) needs internet — see the in-app **👨‍👧 Parents** tab for a

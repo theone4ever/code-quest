@@ -519,9 +519,9 @@ function renderGuide(app) {
     <div class="panel">
       <h2>📱 Use it offline / on the iPad (great for travel)</h2>
       <p>This app is fully <b>offline-capable</b> — every part (lessons, Python, AI demos) runs with <b>no internet</b> once installed. Ideal for trips or unreliable networks.</p>
+      <p>It's hosted at <a href="https://theone4ever.github.io/code-quest/" target="_blank" rel="noopener"><b>theone4ever.github.io/code-quest</b></a> (GitHub Pages).</p>
       <ol>
-        <li>Host the folder once on HTTPS — drag it onto <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> (or Cloudflare Pages / GitHub Pages) to get a link.</li>
-        <li>On the iPad, open that link in <b>Safari</b> over wifi.</li>
+        <li>On the iPad, over wifi, open <b>theone4ever.github.io/code-quest</b> in <b>Safari</b>.</li>
         <li>Tap <b>Share → Add to Home Screen</b>, then open it once from the home screen while still online so it finishes caching.</li>
         <li>It now works offline, full-screen, like a real app. Aurora's progress is saved on the iPad.</li>
       </ol>
