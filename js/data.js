@@ -26,6 +26,85 @@ const BADGES = [
   { id: "streak3", icon: "🔥", name: "On Fire", desc: "Coded 3 days in a row" },
   { id: "streak7", icon: "🌋", name: "Unstoppable", desc: "Coded 7 days in a row" },
   { id: "champion", icon: "👑", name: "Aurora Borealis Champion", desc: "Completed the whole quest!" },
+  { id: "reader", icon: "🦉", name: "Curious Mind", desc: "Read all of Nova's Notebook" },
+];
+
+/* ════════════ Nova's Notebook — short fun readings (the "why" behind the "how") ════════════
+   Grounded in the AI4K12 "Five Big Ideas in AI" + CS Unplugged. `world` (optional) makes a
+   reading appear as a "Read first" card at the top of that world.                            */
+const READINGS = [
+  {
+    id: "r-bug", icon: "🦋", title: "The Day a Real Bug Broke a Computer",
+    tag: "Coder mindset", world: "w1", xp: 10,
+    body: `
+<p>Have you heard coders say their program "has a <b>bug</b>"? There's a true story behind that word. 🦋</p>
+<p>In 1947, a brilliant engineer named <b>Grace Hopper</b> was working on a giant, room-sized computer when it suddenly stopped. The team searched and searched… and found a real <b>moth</b> stuck inside the machine! They taped it into their notebook and wrote: <i>"First actual case of bug being found."</i></p>
+<p>Ever since, a mistake that stops a program is called a <b>bug</b>, and hunting it down is called <b>debugging</b>.</p>
+<p>Here is Nova's biggest secret: <b>every coder on Earth makes bugs — every single day.</b> A bug doesn't mean you're bad at coding. It means you're a coder, doing the job! A bug is just your program whispering, <i>"psst… look right here."</i> Finding it feels like solving a mystery. 🔍</p>`,
+    think: "Think of the last time something you built didn't work the first try — a LEGO model, a recipe, a tennis serve. How did you figure out what went wrong? That's the debugging superpower, and you already have it!",
+    more: { text: 'Book: "Grace Hopper: Queen of Computer Code" by Laurie Wallmark.', url: "" },
+  },
+  {
+    id: "r-what-ai", icon: "🤖", title: "What IS Artificial Intelligence?",
+    tag: "AI Big Idea · Learning", world: "w6", xp: 10,
+    body: `
+<p>People say "artificial intelligence" all the time. But what <i>is</i> it, really? Let Nova share the secret. 🤖</p>
+<p>The programs <b>you</b> write follow exact rules a human typed in: <code>if score &gt; 10: print("win")</code>. The computer never decides anything — it just obeys.</p>
+<p><b>AI is different.</b> Instead of being told every rule, an AI <b>learns the rules itself by studying tons of examples.</b> Nobody ever gave you a rulebook for "how to recognise a cat" — you just saw lots of cats and your brain found the pattern. Machine-learning AI works the same way!</p>
+<p>So when Spotify guesses a song you'll love, or a camera finds a face, no human wrote "rule #5,281." The AI <b>learned from examples</b> — which is also why it needs <i>lots</i> of good examples to get smart, exactly like the fruit robot you trained in the AI Academy. 🍎🍌</p>`,
+    think: "If you wanted to teach an AI to tell a cat from a dog, what examples would you show it — and how many would be enough?",
+    more: { text: 'Novel: "The Wild Robot" by Peter Brown — a robot named Roz who learns by watching the world.', url: "" },
+  },
+  {
+    id: "r-see", icon: "👁️", title: "How Does a Computer See?",
+    tag: "AI Big Idea · Perception", world: "w6b", xp: 10,
+    body: `
+<p>Here's something wild: <b>a computer cannot actually see a picture at all.</b> 👁️</p>
+<p>To a computer, every photo is just a giant grid of <b>numbers</b>. Each tiny square — a <b>pixel</b> — is a number saying how bright or what colour it is. Your phone photos have about <b>12 million</b> of those squares!</p>
+<p>This is the AI big idea called <b>Perception</b>: computers take in the world through <b>sensors</b> (cameras, microphones) and turn it into numbers they can work with.</p>
+<p>So when AI "recognises" your face to unlock a phone, it isn't seeing a face the way you do — it's hunting for <b>patterns in millions of numbers</b>. And a photo filter? That's just <b>math</b> done on those numbers. You saw this yourself in Robot Eyes — your drawing was really just 1s and 0s! 🤖</p>`,
+    think: "Squint at a photo until it blurs into blobs of colour. That's closer to how a computer 'sees' — patterns, not pictures. What little patterns help YOU recognise a friend from far away?",
+    more: { text: "Try Google Teachable Machine (online) to train a camera with a grown-up.", url: "https://teachablemachine.withgoogle.com" },
+  },
+  {
+    id: "r-think", icon: "🌳", title: "How Does AI Think?",
+    tag: "AI Big Idea · Reasoning", world: null, xp: 10,
+    body: `
+<p>How does an AI <b>make a decision</b>? Often it builds a little <b>map of questions</b> in its memory — the AI big idea called <b>Representation &amp; Reasoning</b>. 🧠</p>
+<p>Think about how YOU guess an animal: <i>"Does it have feathers? Does it swim?"</i> Each yes/no answer rules out options until one is left. An AI can build the very same chain of questions — a <b>decision tree</b> — exactly like the Animal Guesser you trained.</p>
+<p>Bigger example: a chess computer doesn't "feel" clever. It <b>represents</b> the board as data and <b>reasons</b> through millions of possible moves to pick a good one — far more than any human could check.</p>
+<p>So a lot of AI "thinking" is really: keep a smart picture of the world in memory, then follow good steps through it. Clever strategy beats magic every time! ♟️</p>`,
+    think: "Pick any animal in your head. What 3 yes/no questions would let a robot guess it? You just designed a decision tree!",
+    more: { text: 'Graphic novels: the "Secret Coders" series by Gene Luen Yang — mysteries solved with logic.', url: "" },
+  },
+  {
+    id: "r-talk", icon: "💬", title: "How Does ChatGPT Talk?",
+    tag: "AI Big Idea · Natural Interaction", world: null, xp: 10,
+    body: `
+<p>How can an AI like ChatGPT or Claude write whole stories? The core trick is surprisingly simple. ✍️</p>
+<p style="text-align:center;font-size:1.12rem"><b>It predicts the next word. Over and over and over.</b></p>
+<p>It read a huge amount of text and learned which word usually comes next. After <i>"Once upon a…"</i> it has seen <i>"time"</i> a million times — so it predicts "time," adds it, then predicts the next word, and the next. This is the AI big idea called <b>Natural Interaction</b>: using language to talk with people.</p>
+<p>You did this yourself with the Word Wizard — <i>you</i> were the prediction engine, tapping one likely word after another!</p>
+<p>Here's the catch: an AI can only suggest words from patterns it has seen, and it doesn't truly <i>know</i> whether they're true. That's why it can sound confident and still be wrong — the perfect reason for our next read. 🤔</p>`,
+    think: "Your phone keyboard suggests the next word as you type — a tiny version of the same idea. Is it ever hilariously wrong?",
+    more: { text: "cs4fn.org has fun, short articles on how computers handle language.", url: "https://www.cs4fn.org" },
+  },
+  {
+    id: "r-fair", icon: "⚖️", title: "Can AI Be Wrong or Unfair?",
+    tag: "AI Big Idea · Societal Impact", world: null, xp: 15,
+    body: `
+<p>AI is powerful — but it is <b>not</b> magic, and it is <b>not</b> always right. This might be the most important read in the whole Notebook. ⚖️</p>
+<p>Remember: AI learns from <b>examples</b>. So if the examples are missing, old, or unfair, the AI will be too. An AI shown mostly one kind of face may struggle with others — not because it's mean, but because of <b>what it was taught</b>. This is the AI big idea called <b>Societal Impact</b>.</p>
+<p>AI can also <b>"hallucinate"</b> — give an answer that sounds totally confident but is simply made up (because it's predicting likely words, remember!).</p>
+<p>So here's how to be a smart AI user, like a real scientist:</p>
+<ul>
+  <li>✅ <b>Double-check</b> important facts in another source.</li>
+  <li>🔒 <b>Never share</b> passwords, your address, or secrets with a chatbot.</li>
+  <li>🧠 <b>You</b> are the boss — AI is a tool, like a calculator or a piano. The human gets the credit <i>and</i> the responsibility.</li>
+</ul>`,
+    think: "If an AI gave you a 'fact' for your homework, what are two ways you could check whether it's actually true?",
+    more: { text: "For grown-ups: Common Sense Media has great family guides on using AI wisely.", url: "https://www.commonsensemedia.org" },
+  },
 ];
 
 const WORLDS = [

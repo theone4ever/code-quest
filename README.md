@@ -57,6 +57,7 @@ rather than opened from a file — a plain `http://` laptop address won't work o
 - **Real Python in the browser** (Skulpt) — with turtle graphics, `input()`, `random`, kid-friendly error messages, and an infinite-loop guard
 - **Gamification**: XP, 7 levels (Spark → Galaxy Master), 11 badges, daily streaks, confetti 🎉
 - **Interactive AI playgrounds** — no-code machine learning demos she trains herself
+- **📖 Nova's Notebook** — short, fun reads explaining the *why* behind the code (grounded in the AI4K12 "5 Big Ideas in AI" + CS Unplugged), each earning XP toward a Curious Mind badge
 - **Auto-checked challenges** with progressive hints in every lesson
 - **Parent's guide** (👨‍👧 in the nav) with a suggested rhythm and follow-up resources
 - **Printable diploma** when the quest is complete 🎓

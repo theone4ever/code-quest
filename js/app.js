@@ -10,9 +10,9 @@ let state = loadState();
 function loadState() {
   try {
     const raw = localStorage.getItem(STORE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) { const s = JSON.parse(raw); if (!s.reads) s.reads = {}; return s; }
   } catch (e) { /* fresh start */ }
-  return { xp: 0, completed: {}, badges: {}, days: [], name: "Aurora", everRan: false };
+  return { xp: 0, completed: {}, reads: {}, badges: {}, days: [], name: "Aurora", everRan: false };
 }
 
 function saveState() {
@@ -96,6 +96,7 @@ function checkBadges() {
   if (s >= 3) earnBadge("streak3");
   if (s >= 7) earnBadge("streak7");
   if (ALL_LESSONS.every(l => state.completed[l.id])) earnBadge("champion");
+  if (typeof READINGS !== "undefined" && READINGS.length && READINGS.every(r => state.reads[r.id])) earnBadge("reader");
 }
 
 /* ---------------- header ---------------- */
@@ -181,13 +182,16 @@ function route() {
   app.innerHTML = "";
   window.scrollTo(0, 0);
 
+  const navKey = (page === "reading") ? "read" : page;
   document.querySelectorAll(".nav a").forEach(a => {
-    a.classList.toggle("active", a.dataset.nav === page);
+    a.classList.toggle("active", a.dataset.nav === navKey);
   });
 
   if (page === "home") renderHome(app);
   else if (page === "world") renderWorld(app, id);
   else if (page === "lesson") renderLesson(app, id);
+  else if (page === "read") renderReadHub(app);
+  else if (page === "reading") renderReading(app, id);
   else if (page === "badges") renderBadges(app);
   else if (page === "guide") renderGuide(app);
   else if (page === "certificate") renderCertificate(app);
@@ -248,12 +252,18 @@ function renderWorld(app, id) {
   const w = WORLDS.find(x => x.id === id);
   if (!w) return renderHome(app);
   const typeLabel = { lesson: "Lesson", quiz: "Quiz", widget: "AI Playground", project: "Project" };
+  const intro = (typeof READINGS !== "undefined") ? READINGS.find(r => r.world === id) : null;
   app.innerHTML = `
     <a class="back-link" href="#home">← Back to the map</a>
     <div class="world-header">
       <span class="emoji">${w.emoji}</span>
       <div><h1 style="color:${w.color}">${w.name}</h1><p>${w.tagline}</p></div>
     </div>
+    ${intro ? `<a class="read-firstcard ${state.reads[intro.id] ? "read" : ""}" href="#reading/${intro.id}">
+      <span class="rf-icon">${intro.icon}</span>
+      <span><b>📖 Read first:</b> ${intro.title}<br><span class="rf-sub">${state.reads[intro.id] ? "✓ Read" : "2-min story · +" + intro.xp + " XP"}</span></span>
+      <span class="rf-go">→</span>
+    </a>` : ""}
     <div class="lesson-list">
       ${w.lessons.map((l, i) => `
         <a class="lesson-row ${state.completed[l.id] ? "done" : ""}" href="#lesson/${l.id}">
@@ -442,6 +452,66 @@ function renderWidgetLesson(container, lesson) {
       }
     });
   }
+}
+
+/* ----- Nova's Notebook: reading hub + reading page ----- */
+function renderReadHub(app) {
+  checkBadges();
+  const done = READINGS.filter(r => state.reads[r.id]).length;
+  app.innerHTML = `
+    <section class="hero">
+      <span class="fox" style="font-size:2.7rem">🦊📖</span>
+      <h1>Nova's <span class="grad-text">Notebook</span></h1>
+      <p class="sub">Short, true stories about how code and AI really work. Read one whenever you're curious — each earns ⭐ XP, and reading them all unlocks the 🦉 Curious Mind badge. (${done} / ${READINGS.length} read)</p>
+    </section>
+    <div class="read-grid">
+      ${READINGS.map(r => `
+        <a class="read-card ${state.reads[r.id] ? "read" : ""}" href="#reading/${r.id}">
+          <span class="r-icon">${r.icon}</span>
+          <span class="r-tag">${r.tag}</span>
+          <h3>${r.title}</h3>
+          <div class="r-meta">${state.reads[r.id] ? `<span class="done-tag">✓ Read</span>` : "2-min read"}<span class="r-xp">⭐ ${r.xp}</span></div>
+        </a>`).join("")}
+    </div>`;
+}
+
+function renderReading(app, id) {
+  const r = READINGS.find(x => x.id === id);
+  if (!r) return renderReadHub(app);
+  const idx = READINGS.indexOf(r);
+  const next = READINGS[idx + 1];
+  const world = r.world ? WORLDS.find(w => w.id === r.world) : null;
+  app.innerHTML = `
+    <div class="lesson-head">
+      <div class="crumbs"><a href="#read">📖 Nova's Notebook</a></div>
+      <h1>${r.icon} ${r.title} ${state.reads[r.id] ? "✅" : ""}</h1>
+      <div class="r-tagline">${r.tag}</div>
+    </div>
+    <div class="learn-card reading-body">${r.body}
+      <div class="fox-tip"><span class="f">🦊</span><p><b>Think about it:</b> ${r.think}</p></div>
+      ${r.more && r.more.text ? `<p class="read-more">📚 <b>Want more?</b> ${r.more.url ? `<a href="${r.more.url}" target="_blank" rel="noopener">${r.more.text}</a>` : r.more.text}</p>` : ""}
+    </div>
+    <div style="text-align:center;margin:0 0 18px">
+      <button class="btn ${state.reads[r.id] ? "" : "btn-run"}" id="mark-read" ${state.reads[r.id] ? "disabled" : ""}>${state.reads[r.id] ? "✓ Read" : "✓ Mark as read (+" + r.xp + " XP)"}</button>
+    </div>
+    <div class="lesson-nav">
+      <a class="btn" href="#read">← All reads</a>
+      ${world ? `<a class="btn" href="#world/${world.id}">${world.emoji} ${world.name} →</a>`
+              : (next ? `<a class="btn btn-primary" href="#reading/${next.id}">Next read →</a>` : `<a class="btn btn-primary" href="#read">Back to Notebook</a>`)}
+    </div>`;
+  const mr = document.getElementById("mark-read");
+  if (mr) mr.onclick = () => { markRead(r); renderReading(app, id); };
+}
+
+function markRead(r) {
+  if (state.reads[r.id]) return;
+  state.reads[r.id] = true;
+  recordActivity();
+  awardXP(r.xp);
+  confettiBurst();
+  toast(`+${r.xp} XP — nice reading! 🦉`);
+  checkBadges();
+  saveState();
 }
 
 /* ----- badges page ----- */
