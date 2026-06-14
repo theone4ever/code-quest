@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora's Code Quest 🌌</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
+
+  <!-- PWA: installable, works fully offline (great for travel / no network) -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0a0f24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Code Quest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+
+  <!-- All assets are vendored locally in /vendor so the app runs 100% offline -->
+  <!-- Fonts (Baloo 2, Nunito, JetBrains Mono — latin + latin-ext for å ä ö) -->
+  <link rel="stylesheet" href="vendor/fonts.css?v=5">
+
+  <!-- CodeMirror (code editor) -->
+  <link rel="stylesheet" href="vendor/codemirror.min.css?v=5">
+  <script src="vendor/codemirror.min.js?v=5"></script>
+  <script src="vendor/python.min.js?v=5"></script>
+  <!-- Editor helpers: bracket matching, auto-close, current-line highlight -->
+  <script src="vendor/matchbrackets.min.js?v=5"></script>
+  <script src="vendor/closebrackets.min.js?v=5"></script>
+  <script src="vendor/activeline.min.js?v=5"></script>
+
+  <!-- Skulpt (Python in the browser) -->
+  <script src="vendor/skulpt.min.js?v=5"></script>
+  <script src="vendor/skulpt-stdlib.js?v=5"></script>
+
+  <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+<body>
+  <!-- Animated aurora background -->
+  <div class="sky">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div id="stars"></div>
+  </div>
+
+  <header class="topbar">
+    <a href="#home" class="brand">
+      <span class="brand-icon">🌌</span>
+      <span class="brand-name">Aurora's <em>Code Quest</em></span>
+    </a>
+    <nav class="nav">
+      <a href="#home" data-nav="home">🗺️ Map</a>
+      <a href="#badges" data-nav="badges">🏅 Badges</a>
+      <a href="#guide" data-nav="guide">👨‍👧 Parents</a>
+    </nav>
+    <div class="stats">
+      <span class="pill pill-xp" id="xp-pill" title="Experience points">⭐ <b id="xp-count">0</b> XP</span>
+      <span class="pill pill-streak" id="streak-pill" title="Days in a row">🔥 <b id="streak-count">0</b></span>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    Made with 💚 for Aurora · Summer 2026
+  </footer>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Toast for messages from Nova the fox -->
+  <div id="toast" class="toast hidden">
+    <span class="toast-fox">🦊</span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <script src="js/data.js?v=5"></script>
+  <script src="js/python.js?v=5"></script>
+  <script src="js/widgets.js?v=5"></script>
+  <script src="js/assistant.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+
+  <!-- Register the offline service worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

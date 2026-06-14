@@ -1,0 +1,5 @@
+# Local tooling / editor state — not part of the app
+.claude/
+.pi/
+.DS_Store
+*.log
