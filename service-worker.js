@@ -6,7 +6,7 @@
    are cross-origin so they bypass this worker entirely.
    ============================================================ */
 
-const CACHE = "aurora-quest-v7";
+const CACHE = "aurora-quest-v8";
 
 const FONTS = Array.from({ length: 22 }, (_, i) => `vendor/font${i + 1}.woff2`);
 

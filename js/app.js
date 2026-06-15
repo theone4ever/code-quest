@@ -575,6 +575,20 @@ function renderGuide(app) {
     </div>
 
     <div class="panel">
+      <h2>📚 Books a book-lover will devour</h2>
+      <p>Aurora loves reading, so these pair beautifully with the quest — stories and graphic novels that are secretly about coding and AI. (These also appear as "Want more?" tips inside <b>Nova's Notebook</b>.)</p>
+      <ul class="resource-list">
+        <li>📕 <b>Lauren Ipsum</b> — Carlos Bueno. A fairy-tale adventure that's secretly a whole computer-science course. No computer needed.</li>
+        <li>📗 <b>Secret Coders</b> (series) — Gene Luen Yang &amp; Mike Holmes. A graphic-novel mystery built on real coding logic — perfect for a graphic-novel fan.</li>
+        <li>🤖 <b>The Wild Robot</b> — Peter Brown. A beloved novel about a robot, Roz, who <i>learns</i> to adapt and care — a lovely way into "what is AI?" (also a film).</li>
+        <li>📘 <b>Hello Ruby: Journey Inside the Computer</b> — Linda Liukas. Gorgeous, imaginative picture-book look at how computers work.</li>
+        <li>🧚 <b>Computational Fairy Tales</b> — Jeremy Kubica. Classic CS ideas told as short fantasy tales.</li>
+        <li>💪 <b>Girls Who Code: Learn to Code and Change the World</b> — Reshma Saujani. Inspiring, friendly, and full of real women in tech (there's a fun fiction series too).</li>
+        <li>🚀 <b>Hidden Figures</b> (Young Readers Edition) — Margot Lee Shetterly. The true story of the women whose math sent NASA to space.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
       <h2>🦊 Nova — the AI tutor (optional)</h2>
       <p>There's a floating <b>“Ask Nova”</b> button in the bottom-right corner. Nova is an AI coding buddy who gives Aurora <b>hints and guiding questions</b> (not full answers) when she's stuck — so she stays self-sufficient. Nova always knows which lesson she's on and can look at her current code.</p>
       <p>It's <b>off until you add an API key</b> (click Nova → ⚙️). It works with <b>any OpenAI-compatible provider</b>, so you can switch freely:</p>

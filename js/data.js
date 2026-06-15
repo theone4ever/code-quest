@@ -45,6 +45,50 @@ const READINGS = [
     more: { text: 'Book: "Grace Hopper: Queen of Computer Code" by Laurie Wallmark.', url: "" },
   },
   {
+    id: "r-decide", icon: "🔀", title: "Yes, No, and How Computers Decide",
+    tag: "Coding idea · Logic", world: "w2", xp: 10,
+    body: `
+<p>A computer can do dazzling things — yet deep down it only ever answers one kind of question: <b>yes or no. True or false.</b> 🔀</p>
+<p>Every choice your program makes is built from tiny yes/no questions: <i>Is the score over 10? Is the word "yes"? Is energy still above 0?</i> That's what an <code>if</code> really is — a fork in the trail, with one path for <b>True</b> and one for <b>False</b>.</p>
+<p>Here's the amazing part: even the biggest, smartest computer is made of <b>billions of tiny switches</b>, each just <b>on or off</b> (that's the 1s and 0s!). Stack enough yes/no switches together and you can play music, land a rocket, or beat a grandmaster at chess.</p>
+<p>So when something feels "too smart to be just yes/no" — remember, it's yes/no all the way down. You're learning the computer's true language. 🧠</p>`,
+    think: "On your walk to school, count the yes/no decisions you make: Red light? Cross now? Puddle ahead? A program decides in exactly the same way.",
+    more: { text: "cs4fn.org has playful articles on logic and how computers 'think' in true/false.", url: "https://www.cs4fn.org" },
+  },
+  {
+    id: "r-loops", icon: "🔁", title: "Loops: The Laziest Superpower",
+    tag: "Coding idea · Repetition", world: "w3", xp: 10,
+    body: `
+<p>Computers have one wonderful quality: <b>they never get bored.</b> 🔁</p>
+<p>Imagine writing "practice piano" 100 times by hand — exhausting! A <b>loop</b> lets you say it <i>once</i>: "do this 100 times." The computer happily repeats without ever sighing.</p>
+<p>This is why good coders are "lazy" in the smartest way: instead of repeating themselves, they teach the computer to repeat. One loop that draws a single petal can paint a whole flower 🌸. One loop over a list can check a million songs in a blink.</p>
+<p>You already felt this power in Loop Lagoon — a few lines spun a whole spiral galaxy. Practising a tennis serve over and over to make it perfect? That's a loop too. Repetition is how both computers <i>and</i> people get strong. 🎾</p>`,
+    think: "What's something you repeat a lot — piano scales, tennis serves, dance steps? If you were a computer, how would you write it as a loop?",
+    more: { text: "CS Unplugged (csunplugged.org) has fun no-computer activities about repeating instructions.", url: "https://www.csunplugged.org" },
+  },
+  {
+    id: "r-lists", icon: "🎵", title: "How Spotify Holds 100 Million Songs",
+    tag: "Coding idea · Data", world: "w4", xp: 10,
+    body: `
+<p>One variable holds <i>one</i> thing. But what if you have a hundred favourite songs, or a whole shelf of books? You'd need a hundred boxes! That's where a <b>list</b> comes in — one variable that holds <b>many things at once</b>. 📚</p>
+<p>A list is like a bookshelf or a playlist: everything lined up in order, each with a position number (and yes — computers start counting at <b>0</b>, so the first item is number 0!).</p>
+<p>This one idea is everywhere. Spotify keeps your songs in lists. Your phone keeps contacts in a list. A library keeps every book in a giant list it can search in an instant. Computers are <b>brilliant</b> at storing huge lists and looping through them at lightning speed.</p>
+<p>You built shelves like this in the List Library — once you can store a collection, you can sort it, search it, and play with it forever. 🎶</p>`,
+    think: "If you made a list of your top 10 books, which one would sit at index 0 — the very first spot?",
+    more: { text: 'Book: "Hello Ruby: Journey Inside the Computer" by Linda Liukas.', url: "" },
+  },
+  {
+    id: "r-functions", icon: "🪄", title: "Functions: Little Spells You Reuse",
+    tag: "Coding idea · Abstraction", world: "w5", xp: 10,
+    body: `
+<p>Imagine if, every time you wanted to play a song on the piano, you had to re-learn it from scratch. Impossible! Instead you learn it <b>once</b>, give it a name ("Für Elise"), and play it whenever you like. 🎹</p>
+<p>A <b>function</b> is exactly that for code: a set of steps you write <i>once</i>, give a name, and reuse forever. Need it again? Just call its name. This is one of the biggest ideas in all of computing, called <b>abstraction</b> — tucking messy details behind a simple label.</p>
+<p>You've used functions since day one without knowing it: <code>print()</code> and <code>input()</code> are functions other people wrote so you don't have to! In Function Forest you started writing your <i>own</i> spells.</p>
+<p>A tennis serve you drill once and reuse every match; a warm-up routine you repeat each morning — those are functions too. Name it once, use it forever. ✨</p>`,
+    think: "What's a 'function' in your day — one set of steps you always do the same way (brushing teeth? a warm-up)? Give it a good name!",
+    more: { text: 'Book: "Computational Fairy Tales" by Jeremy Kubica.', url: "" },
+  },
+  {
     id: "r-what-ai", icon: "🤖", title: "What IS Artificial Intelligence?",
     tag: "AI Big Idea · Learning", world: "w6", xp: 10,
     body: `
@@ -104,6 +148,36 @@ const READINGS = [
 </ul>`,
     think: "If an AI gave you a 'fact' for your homework, what are two ways you could check whether it's actually true?",
     more: { text: "For grown-ups: Common Sense Media has great family guides on using AI wisely.", url: "https://www.commonsensemedia.org" },
+  },
+  {
+    id: "r-think-like-coder", icon: "🧩", title: "Think Like a Coder",
+    tag: "Coding idea · Computational thinking", world: "w7", xp: 15,
+    body: `
+<p>Here's the biggest secret of all: the most important thing a coder learns isn't a <i>language</i> — it's a <b>way of thinking</b>. It's called <b>computational thinking</b>, and it works on EVERYTHING, not just computers. 🧩</p>
+<p>It has four superpowers:</p>
+<ul>
+  <li>🔨 <b>Decompose</b> — break a big scary problem into small easy ones.</li>
+  <li>🔁 <b>Patterns</b> — spot what repeats, so you don't redo work.</li>
+  <li>🎯 <b>Abstraction</b> — focus on what matters, ignore the rest.</li>
+  <li>📋 <b>Algorithm</b> — write a clear, step-by-step plan.</li>
+</ul>
+<p>You use these to plan a tennis match, pack for a trip, or learn a piano piece — and now, to build your projects in the Studio. A giant project isn't scary once you <b>decompose</b> it into tiny steps you already know how to do.</p>
+<p>Real coders aren't people who never get stuck. They're people who break "stuck" into smaller pieces until it isn't stuck anymore. That's you now. 🌟</p>`,
+    think: "Pick a project idea you'd love to make. Can you decompose it into 3 smaller steps? Congratulations — you just did computational thinking!",
+    more: { text: "Code.org and CS Unplugged have lots of computational-thinking challenges.", url: "https://code.org" },
+  },
+  {
+    id: "r-history", icon: "👩‍💻", title: "The Women Who Invented the Future",
+    tag: "Story · Trailblazers", world: null, xp: 15,
+    body: `
+<p>When you write code, you're joining a story that's almost 200 years old — and some of its biggest heroes are women. 👩‍💻</p>
+<p><b>Ada Lovelace</b> (in the 1840s!) wrote the world's <b>first computer program</b> — for a machine that hadn't even been built yet. She dreamed computers might one day make music and art. She was right by about 150 years. 🎶</p>
+<p><b>Grace Hopper</b> taught computers to understand <i>words</i> instead of just numbers — and yes, she's the one who taped that famous moth into the logbook. 🦋</p>
+<p><b>Katherine Johnson</b> was a math genius at NASA whose calculations sent astronauts to the Moon and safely home. The astronauts trusted <i>her</i> math even over the new computers.</p>
+<p><b>Margaret Hamilton</b> led the team whose code landed Apollo 11 on the Moon — and she helped invent the whole idea of "software engineering."</p>
+<p>Brilliant, curious people have always changed the world with code. There's a seat in that story with your name on it, Aurora. ✨</p>`,
+    think: "If you could ask one of these four women a single question, who would you ask — and what?",
+    more: { text: 'Books: "Girls Who Code" by Reshma Saujani, and "Hidden Figures" (Young Readers Edition).', url: "" },
   },
 ];
 
