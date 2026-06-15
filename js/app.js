@@ -96,7 +96,11 @@ function checkBadges() {
   if (s >= 3) earnBadge("streak3");
   if (s >= 7) earnBadge("streak7");
   if (ALL_LESSONS.every(l => state.completed[l.id])) earnBadge("champion");
-  if (typeof READINGS !== "undefined" && READINGS.length && READINGS.every(r => state.reads[r.id])) earnBadge("reader");
+  if (typeof READINGS !== "undefined" && READINGS.length) {
+    const readCount = READINGS.filter(r => state.reads[r.id]).length;
+    if (readCount >= 5) earnBadge("bookworm");
+    if (READINGS.every(r => state.reads[r.id])) earnBadge("reader");
+  }
 }
 
 /* ---------------- header ---------------- */
@@ -455,37 +459,69 @@ function renderWidgetLesson(container, lesson) {
 }
 
 /* ----- Nova's Notebook: reading hub + reading page ----- */
+function readingById(id) { return READINGS.find(r => r.id === id); }
+
+// flattened reading order following the shelves (for prev/next)
+function readingOrder() {
+  const ids = [];
+  if (typeof SHELVES !== "undefined") {
+    SHELVES.forEach(s => s.ids.forEach(id => { if (readingById(id)) ids.push(id); }));
+  }
+  READINGS.forEach(r => { if (!ids.includes(r.id)) ids.push(r.id); });
+  return ids;
+}
+
+function readCardHTML(r) {
+  const lvl = r.level === "deeper"
+    ? `<span class="r-level deeper">🔭 Deeper</span>`
+    : `<span class="r-level">✨ Starter</span>`;
+  return `
+    <a class="read-card ${state.reads[r.id] ? "read" : ""}" href="#reading/${r.id}">
+      <span class="r-icon">${r.icon}</span>
+      <span class="r-tag">${r.tag}</span>
+      <h3>${r.title}</h3>
+      <div class="r-meta">
+        <span>${lvl} · ${(r.mins || 2)} min</span>
+        <span>${state.reads[r.id] ? `<span class="done-tag">✓</span> ` : ""}<span class="r-xp">⭐ ${r.xp}</span></span>
+      </div>
+    </a>`;
+}
+
 function renderReadHub(app) {
   checkBadges();
   const done = READINGS.filter(r => state.reads[r.id]).length;
+  const shelves = (typeof SHELVES !== "undefined" && SHELVES.length)
+    ? SHELVES
+    : [{ emoji: "📖", title: "Readings", blurb: "", ids: READINGS.map(r => r.id) }];
   app.innerHTML = `
     <section class="hero">
       <span class="fox" style="font-size:2.7rem">🦊📖</span>
       <h1>Nova's <span class="grad-text">Notebook</span></h1>
-      <p class="sub">Short, true stories about how code and AI really work. Read one whenever you're curious — each earns ⭐ XP, and reading them all unlocks the 🦉 Curious Mind badge. (${done} / ${READINGS.length} read)</p>
+      <p class="sub">A little library about how code and AI really work — dip in whenever you're curious. Every page earns ⭐ XP: read 5 for the 🐛 Bookworm badge, and all ${READINGS.length} for 🦉 Curious Mind. (${done} / ${READINGS.length} read)</p>
     </section>
-    <div class="read-grid">
-      ${READINGS.map(r => `
-        <a class="read-card ${state.reads[r.id] ? "read" : ""}" href="#reading/${r.id}">
-          <span class="r-icon">${r.icon}</span>
-          <span class="r-tag">${r.tag}</span>
-          <h3>${r.title}</h3>
-          <div class="r-meta">${state.reads[r.id] ? `<span class="done-tag">✓ Read</span>` : "2-min read"}<span class="r-xp">⭐ ${r.xp}</span></div>
-        </a>`).join("")}
-    </div>`;
+    ${shelves.map(s => `
+      <section class="shelf">
+        <h2 class="shelf-head"><span>${s.emoji}</span> ${s.title}</h2>
+        ${s.blurb ? `<p class="shelf-blurb">${s.blurb}</p>` : ""}
+        <div class="read-grid">
+          ${s.ids.map(readingById).filter(Boolean).map(readCardHTML).join("")}
+        </div>
+      </section>`).join("")}`;
 }
 
 function renderReading(app, id) {
   const r = READINGS.find(x => x.id === id);
   if (!r) return renderReadHub(app);
-  const idx = READINGS.indexOf(r);
-  const next = READINGS[idx + 1];
+  const order = readingOrder();
+  const nextId = order[order.indexOf(r.id) + 1];
+  const next = nextId ? readingById(nextId) : null;
   const world = r.world ? WORLDS.find(w => w.id === r.world) : null;
+  const lvl = r.level === "deeper" ? "🔭 Deeper" : "✨ Starter";
   app.innerHTML = `
     <div class="lesson-head">
       <div class="crumbs"><a href="#read">📖 Nova's Notebook</a></div>
       <h1>${r.icon} ${r.title} ${state.reads[r.id] ? "✅" : ""}</h1>
-      <div class="r-tagline">${r.tag}</div>
+      <div class="r-tagline">${r.tag} · ${lvl} · ${(r.mins || 2)} min</div>
     </div>
     <div class="learn-card reading-body">${r.body}
       <div class="fox-tip"><span class="f">🦊</span><p><b>Think about it:</b> ${r.think}</p></div>

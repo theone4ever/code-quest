@@ -26,6 +26,7 @@ const BADGES = [
   { id: "streak3", icon: "🔥", name: "On Fire", desc: "Coded 3 days in a row" },
   { id: "streak7", icon: "🌋", name: "Unstoppable", desc: "Coded 7 days in a row" },
   { id: "champion", icon: "👑", name: "Aurora Borealis Champion", desc: "Completed the whole quest!" },
+  { id: "bookworm", icon: "🐛", name: "Bookworm", desc: "Read 5 pages of Nova's Notebook" },
   { id: "reader", icon: "🦉", name: "Curious Mind", desc: "Read all of Nova's Notebook" },
 ];
 
@@ -179,6 +180,225 @@ const READINGS = [
     think: "If you could ask one of these four women a single question, who would you ask — and what?",
     more: { text: 'Books: "Girls Who Code" by Reshma Saujani, and "Hidden Figures" (Young Readers Edition).', url: "" },
   },
+
+  /* ---- How Computers Really Work ---- */
+  {
+    id: "r-bits", icon: "🔢", title: "Everything Is Secretly a Number",
+    tag: "How computers work · Binary", world: null, xp: 15, level: "deeper", mins: 5,
+    body: `
+<p>Here's the most mind-bending secret in all of computing: deep down, a computer only understands <b>two things</b> — <b>on</b> and <b>off</b>. That's it. Like a light switch. 💡</p>
+<p>We write "on" as <b>1</b> and "off" as <b>0</b>. One of those is called a <b>bit</b>. And somehow, using only 1s and 0s, computers store <i>everything</i> — your photos, your songs, this very page.</p>
+<h3>Counting with two digits</h3>
+<p>You count with ten digits (0–9). A computer counts with just two — that's <b>binary</b>. It still works, you just roll over sooner: 0, 1, then <code>10</code> means two, <code>11</code> means three, <code>100</code> means four. Like a car odometer that only has 0s and 1s.</p>
+<p>Fun fact: you can count all the way to <b>31 on one hand</b> in binary — each finger is a bit (down = 0, up = 1)! 🖐️</p>
+<h3>Letters, pictures, sound… all numbers</h3>
+<ul>
+  <li><b>Letters:</b> each one gets a number (in one common code, A is 65). So "Hi" is really 72, 105 — which then become bits.</li>
+  <li><b>Pictures:</b> every pixel is just numbers for its colour (you saw this in Robot Eyes!).</li>
+  <li><b>Sound:</b> a song is measured thousands of times a second, and each measurement is a number.</li>
+</ul>
+<p>So a selfie, a pop song, and a text message are all just loooong strings of 1s and 0s. The only difference is <b>how the computer reads them</b>. Numbers all the way down. 🤯</p>`,
+    think: "Try counting from 0 to 5 on your fingers in binary (a finger down is 0, up is 1). What does 5 look like?",
+    more: { text: 'CS Unplugged has a hands-on binary-cards activity; BBC Bitesize covers "bits and bytes".', url: "https://www.csunplugged.org" },
+  },
+  {
+    id: "r-inside-the-machine", icon: "🧠", title: "Inside the Machine: Brain, Desk, and Cupboard",
+    tag: "How computers work · Hardware", world: null, xp: 15, level: "deeper", mins: 5,
+    body: `
+<p>If you opened up a computer or a phone, what's actually <i>in</i> there? Let's take a tour, with a kitchen in mind. 🧑‍🍳</p>
+<h3>The brain: the CPU</h3>
+<p>The <b>CPU</b> is the chef — it does the real work, following instructions one after another, <b>billions of times a second</b>. When you hear "3 GHz," that means about 3 <i>billion</i> tiny steps every second. 🤯</p>
+<h3>The desk: memory (RAM)</h3>
+<p><b>RAM</b> is the countertop the chef works on — it holds whatever the computer is using <i>right now</i>. It's lightning fast, but it has a catch: when the power goes off, it <b>forgets everything</b>. (That's exactly why you lose unsaved work if the battery dies! 😱)</p>
+<h3>The cupboard: storage</h3>
+<p><b>Storage</b> (a hard drive or SSD) is the cupboard and the backpack — it keeps your photos, apps and files <b>even when the power is off</b>. It's much bigger than RAM, but slower to reach into.</p>
+<p>So the computer is forever shuttling things between the big-but-slow cupboard and the small-but-fast desk, while the chef cooks. Add a <b>screen</b> and <b>speakers</b> (its voice), plus a <b>keyboard, mouse and camera</b> (its senses), and you've met the whole machine. 🖥️</p>`,
+    think: "When you press SAVE on your code, which part are you copying it into so it survives a restart — the fast forgetful desk (RAM), or the cupboard (storage)?",
+    more: { text: 'Book: "Hello Ruby: Journey Inside the Computer" by Linda Liukas.', url: "" },
+  },
+
+  /* ---- The Coder's Craft ---- */
+  {
+    id: "r-algorithms", icon: "📋", title: "Algorithms: Recipes That Solve Anything",
+    tag: "Coder's craft · Algorithms", world: null, xp: 15, level: "deeper", mins: 5,
+    body: `
+<p>Fancy word, simple idea: an <b>algorithm</b> is just a <b>clear set of steps to solve a problem</b>. A cake recipe is an algorithm. So is tying your shoes, or doing long division. You already follow dozens every day! 📋</p>
+<p>Computers run algorithms billions of times — so here's the cool part: the <i>same</i> problem can have a <b>slow</b> way and a <b>clever fast</b> way.</p>
+<h3>Finding things fast</h3>
+<p>Imagine finding "Zebra" in a dictionary. The slow way: check page 1, page 2, page 3… forever. The clever way: open the <b>middle</b>, see if you've gone too far, and throw away <i>half</i> the book — then repeat. That's <b>binary search</b>, the trick from the Mind Reader: it finds 1 number out of 100 in just <b>7 guesses</b>! 🎯</p>
+<h3>Putting things in order</h3>
+<p><b>Sorting</b> means arranging things — like alphabetizing your bookshelf. There are lots of sorting algorithms with great names, and the clever ones can sort a <b>million</b> items in the blink of an eye.</p>
+<p>This is the difference between code that just <i>works</i> and code that works <i>smart</i>. With a tiny bit of data, any way is fine. With a LOT of data, a good algorithm is the difference between "instant" and "still loading…". 🐢⚡</p>`,
+    think: "How do YOU find a word in a real dictionary — page by page from the start, or by jumping to roughly the right spot and adjusting? You already use a fast algorithm!",
+    more: { text: "CS Unplugged has a fun no-computer sorting-networks activity.", url: "https://www.csunplugged.org" },
+  },
+
+  /* ---- The Internet & Staying Safe ---- */
+  {
+    id: "r-internet", icon: "🌐", title: "How the Internet Really Works",
+    tag: "The internet · How it works", world: null, xp: 20, level: "deeper", mins: 6,
+    body: `
+<p>You tap a video and it just… plays. But behind that tap is one of the most amazing machines humans ever built: the <b>internet</b> — millions of computers connected by cables (yes, including giant ones lying across the ocean floor! 🌊) and by wifi and radio waves.</p>
+<h3>Messages travel in tiny pieces</h3>
+<p>Here's the surprise: your video doesn't arrive as one big lump. It's chopped into thousands of little pieces called <b>packets</b> — like mailing a huge book one page at a time, each page in its own envelope. ✉️</p>
+<h3>Everything has an address</h3>
+<p>Every device has an <b>IP address</b> — like a postal address. Each packet carries the <b>to</b> address, the <b>from</b> address, and a small chunk of the data. Special computers called <b>routers</b> pass packets along, choosing good routes like postal sorting offices. Different packets might even take different paths!</p>
+<p>At your end, all the packets are put back in the right order to rebuild the video — usually in a fraction of a second. 🤯</p>
+<h3>Asking for a page</h3>
+<p>A website lives on a powerful, always-on computer called a <b>server</b>. Your device is the <b>client</b> that asks for it. You type a web name, and the <b>DNS</b> — the internet's giant phone book — looks up its number so your request knows where to go.</p>
+<p>So "the internet" isn't a cloud in the sky. It's a planet-sized postal system for packets, run by millions of cooperating machines. 🌍</p>`,
+    think: "If the internet is a giant postal system: what is the envelope, what is the address, and who are the sorting offices?",
+    more: { text: '"How does the internet work?" videos at The Kid Should See This.', url: "https://thekidshouldseethis.com/post/how-does-the-internet-work" },
+  },
+  {
+    id: "r-secrets", icon: "🔐", title: "Secret Codes: How the Internet Keeps Secrets",
+    tag: "The internet · Secret codes", world: null, xp: 15, level: "deeper", mins: 5,
+    body: `
+<p>When you type a password or send a message, it hops across <i>many</i> computers to get where it's going. So how come strangers can't just read it? The answer is a 2,000-year-old idea: <b>cryptography</b> — turning a message into a secret code. 🔐</p>
+<h3>An ancient trick you can do right now</h3>
+<p>The <b>Caesar cipher</b> (used by Julius Caesar himself!) shifts every letter forward by a fixed amount. Shift by 3 and A→D, B→E, C→F… so <b>HI</b> becomes <b>KL</b>. To read it, you need the secret: shift back by 3. Anyone without the secret just sees gibberish.</p>
+<h3>Computers do this — but WAY stronger</h3>
+<p>Modern codes use gigantic numbers and math that's easy to do one way but practically impossible to undo without the secret <b>key</b>. That little <b>padlock 🔒</b> in your browser bar? It means your data is <b>encrypted</b> on its journey — snoops in the middle just see scrambled nonsense.</p>
+<p>This is also why a <b>strong, secret password</b> matters so much: it's <i>your</i> key. Share it, and you've handed someone the key to your front door. 🗝️</p>`,
+    think: "Write a short word in Caesar cipher by shifting each letter forward by 3, then see if a friend or grown-up can crack it.",
+    more: { text: "cs4fn.org has hands-on cryptography puzzles and secret-code activities.", url: "https://www.cs4fn.org/security/" },
+  },
+  {
+    id: "r-online-safe", icon: "🛡️", title: "Be Safe and Kind Online",
+    tag: "The internet · Staying safe", world: null, xp: 15, level: "starter", mins: 3,
+    body: `
+<p>The internet is a wonderful place — a whole world of games, art, friends and answers. It's also a <b>public</b> place, like a giant city. And a few smart city rules keep you safe and happy. 🛡️</p>
+<h3>Keep private things private</h3>
+<p>Some things are nobody's business: your <b>passwords</b>, home address, school name, phone number, and full birthday. Don't post them or type them into random sites — <b>not even to a chatbot</b>. 🔒</p>
+<h3>Think before you click</h3>
+<p>Strange links, prize pop-ups and surprise downloads can be tricks (grown-ups call it <b>phishing</b> 🎣). If something feels weird or too-good-to-be-true, don't click — ask a grown-up.</p>
+<h3>Be kind — there's a real person there</h3>
+<p>Behind every screen is a real human with real feelings. Don't type anything you wouldn't say to someone's face. And remember: screenshots last <b>forever</b>, so post things future-you would be proud of. That's your <b>digital footprint</b>. 👣</p>
+<p>One more secret: it's totally okay to <b>log off</b>. Some of the best things — tennis, piano, a good book, family — live offline. 💚</p>`,
+    think: "Name 3 things you should NEVER share online, even if a website or app asks for them nicely.",
+    more: { text: "For families: Common Sense Media and BBC Own It have great online-safety guides.", url: "https://www.commonsensemedia.org" },
+  },
+
+  /* ---- The Magic of AI (deeper) ---- */
+  {
+    id: "r-learn", icon: "🧠", title: "How Does an AI Actually Learn?",
+    tag: "AI · How it learns", world: null, xp: 20, level: "deeper", mins: 6,
+    body: `
+<p>You already know AI learns from <b>examples</b>. But <i>how</i> does staring at examples make it smart? Let Nova show you the real magic — it's called <b>training</b>. 🧠</p>
+<h3>Wrong, adjust, repeat</h3>
+<p>Imagine teaching a robot to spot cats. You show it a photo and ask, "cat?" It guesses. If it's wrong, you tell it — and it nudges itself a tiny bit. Show it a <b>million</b> photos, correcting as you go, and its guesses get better and better. Sound familiar? It's exactly how you learned a tennis serve: try, miss, adjust, try again, until you nail it. 🎾</p>
+<h3>A brain made of math</h3>
+<p>Many AIs use a <b>neural network</b>, inspired by your brain. Your brain has billions of tiny cells (<b>neurons</b>) wired together. A neural network has lots of simple math "neurons" arranged in layers, joined by connections — and each connection has a <b>strength</b>.</p>
+<p>When the AI trains, it turns those connection strengths up or down — like tuning <b>thousands of tiny knobs</b> — until the right answers come out. A big AI can have <b>billions</b> of those knobs! 🎛️</p>
+<p>Now you see why AI needs <i>lots</i> of examples and powerful computers: turning that many knobs, that many times, is a giant amount of practice. No magic — just patterns, practice, and a LOT of math. ✨</p>`,
+    think: "Think of something hard you learned — a song, a serve, riding a bike. You tried, missed, adjusted, repeated. How is that just like training an AI?",
+    more: { text: "Train a real model yourself at Machine Learning for Kids.", url: "https://machinelearningforkids.co.uk" },
+  },
+  {
+    id: "r-art", icon: "🎨", title: "How Does AI Make Pictures?",
+    tag: "AI · Making art", world: null, xp: 15, level: "starter", mins: 4,
+    body: `
+<p>You may have seen AI that draws a picture from words — like "a fox playing tennis on the moon." 🦊🌙 How on earth does it do that?</p>
+<h3>It studied millions of labelled pictures</h3>
+<p>The AI looked at <i>millions</i> of images together with their descriptions, learning which words tend to go with which shapes, colours and textures — what "fox" looks like, what "moon" looks like.</p>
+<h3>From static to art</h3>
+<p>Here's the clever trick: it learns to start from random <b>noise</b> (like TV static) and slowly clean it up, step by step, into a picture that matches your words — a bit like spotting a shape in a cloud and sculpting it into being. 🌫️ → 🖼️</p>
+<p>But remember what's really happening: it's <b>remixing patterns</b> it learned. It has never actually seen a real fox or felt moonlight. It's matching pixels to words — not imagining the way you do.</p>
+<p>That's why <b>you</b> are still the artist. Real art carries feelings, choices and stories. AI is a brilliant paintbrush; a human holds it. 🎨</p>`,
+    think: "If you asked an AI to draw your dream bedroom, what 5 describing words would you give it to get it just right?",
+    more: { text: 'Play Google "Quick, Draw!" — a neural net tries to guess your doodles.', url: "https://quickdraw.withgoogle.com" },
+  },
+  {
+    id: "r-everywhere", icon: "🔍", title: "Spot the AI: It's Already All Around You",
+    tag: "AI · In daily life", world: null, xp: 10, level: "starter", mins: 3,
+    body: `
+<p>People imagine AI as a far-future robot. But here's the truth: you probably bumped into AI a dozen times <i>before lunch</i>. Let's go on an AI safari through an ordinary day. 🔍</p>
+<ul>
+  <li>🌅 <b>Morning:</b> your phone unlocks by recognising your face (AI vision). The weather app predicts rain (an AI model).</li>
+  <li>🎵 <b>Music &amp; video:</b> Spotify and YouTube suggest what's next — they learned your taste.</li>
+  <li>⌨️ <b>Typing:</b> autocomplete, autocorrect, and the spam filter that hides junk mail (AI language).</li>
+  <li>📷 <b>Photos:</b> search "beach" and it finds every beach photo; portrait mode blurs the background.</li>
+  <li>🗺️ <b>Maps:</b> the fastest route and traffic predictions.</li>
+  <li>🗣️ <b>Voice:</b> Siri or Alexa understanding what you said; translation apps.</li>
+</ul>
+<p>AI isn't coming someday — it's already woven quietly through your day, helping (and sometimes <i>nudging</i> you to keep watching!). The cool part? Once you can <b>spot</b> it, you're the one in charge of it. 😎</p>`,
+    think: "Count how many different AIs you bumped into yesterday. Bet it's more than five!",
+    more: { text: "cs4fn and AI4K12 have lots more about AI all around us.", url: "https://ai4k12.org" },
+  },
+  {
+    id: "r-creative", icon: "🤔", title: "Can a Computer Think?",
+    tag: "AI · Big questions", world: null, xp: 15, level: "starter", mins: 4,
+    body: `
+<p>Here's a question grown-up scientists still argue about: can a computer truly <b>think</b> — or is it only <i>pretending</i>? 🤔</p>
+<h3>The imitation game</h3>
+<p>Back in 1950, a brilliant thinker named <b>Alan Turing</b> invented a famous test. The idea: if you chat by text with a hidden human and a hidden computer, and you <b>can't tell which is which</b>, then maybe the computer is "thinking." Today we call it the <b>Turing Test</b>.</p>
+<p>Modern chatbots can fool people for a while! But remember our secret from before: they're <b>predicting words</b>, not understanding the way you do. They have no feelings, no memory of being a kid, no tummy that rumbles at lunchtime. 🍎</p>
+<h3>A puzzle worth keeping</h3>
+<p>An AI can write a poem about love without ever having felt love. Is that real creativity? Smart people <i>disagree</i> — and honestly, that's what makes it such a delicious thing to wonder about.</p>
+<p>What everyone <i>does</i> agree on: AI is a powerful tool, and it's <b>humans</b> who bring the meaning, the caring, and the responsibility. 💚</p>`,
+    think: "What is one thing YOU can do that you think a computer could never truly do — and why do you think so?",
+    more: { text: "cs4fn has fun reads on Alan Turing and whether machines can think.", url: "https://www.cs4fn.org" },
+  },
+
+  /* ---- The Humans of Computing ---- */
+  {
+    id: "r-firstcomputers", icon: "🖥️", title: "When Computers Filled a Whole Room",
+    tag: "History · First computers", world: null, xp: 10, level: "starter", mins: 4,
+    body: `
+<p>The phone in your pocket is a <b>supercomputer</b>. But the very first electronic computers? They were <b>gigantic</b>. 🏢</p>
+<p>Meet <b>ENIAC</b> (1945): it weighed about <b>30 tons</b>, filled a whole room, and glowed with around <b>18,000</b> hot vacuum tubes. To program it, people <b>plugged in cables by hand</b> — and the first programmers were a team of brilliant <b>women</b>.</p>
+<p>Fun fact: the word "computer" used to mean a <b>person</b> whose <i>job</i> was to compute — to do math by hand, often for science and space missions. Many of those human "computers" were women too.</p>
+<p>Those room-sized machines were thousands of times <b>weaker</b> than your phone, gulped enough electricity to dim the lights, and broke down constantly (remember the famous moth bug? 🦋). Yet they helped win a war and reach for the stars.</p>
+<p>In about <b>80 years</b> we went from a 30-ton room to a sliver of glass in your hand, millions of times faster. So here's a thought: what will computers look like when <b>you're</b> grown up? You might help build them. 🚀</p>`,
+    think: "If you could time-travel and show the ENIAC engineers your tablet, what do you think would amaze them most?",
+    more: { text: 'Book: "Hello Ruby" by Linda Liukas — or look up photos of ENIAC.', url: "" },
+  },
+  {
+    id: "r-turing", icon: "🔓", title: "The Codebreaker Who Helped Win a War",
+    tag: "History · Codebreakers", world: null, xp: 15, level: "deeper", mins: 5,
+    body: `
+<p>Some people change the world quietly. <b>Alan Turing</b> is one of the most important thinkers behind the very computer you're using right now. 🧠</p>
+<h3>He imagined computers before they existed</h3>
+<p>Long before real computers, Turing dreamed up a machine that could follow <i>any</i> list of instructions to solve <i>any</i> solvable problem. That single idea is the seed of <b>every</b> computer today — we still call it a "Turing machine."</p>
+<h3>The codebreaker</h3>
+<p>In World War II, the enemy sent secret orders scrambled by a machine called <b>Enigma</b> — with <b>billions</b> of possible settings that <b>changed every single day</b>. Cracking it by hand was hopeless.</p>
+<p>So Turing and his team at Bletchley Park (including many women) built a code-breaking machine called the <b>Bombe</b> to test settings at lightning speed. Historians believe their work <b>shortened the war by years</b> and saved countless lives. It stayed top secret for decades! 🤫</p>
+<p>He also dreamed up the <b>Turing Test</b> for machine thinking. Computing's highest honour — the <b>Turing Award</b> — is named after him. Not bad for a curious puzzle-lover. 🏆</p>`,
+    think: "Breaking Enigma meant attacking a puzzle that reset every single day. When a puzzle feels impossible, what helps YOU keep going?",
+    more: { text: '"The Kid Should See This" has great Alan Turing and Enigma videos.', url: "https://thekidshouldseethis.com" },
+  },
+  {
+    id: "r-young", icon: "🌟", title: "You Don't Have to Be a Grown-Up to Change Things",
+    tag: "You · Your turn", world: null, xp: 15, level: "starter", mins: 3,
+    body: `
+<p>Time for Nova's favourite myth to bust: the idea that you must be a grown-up expert before you can make something real. <b>Not true.</b> 🌟</p>
+<p>Kids and teens have built popular games and apps, won science fairs that turned into real inventions, started coding clubs, and made tools and art that help actual people. They didn't wait for permission.</p>
+<p>The secret isn't being a super-genius. It's three things: being <b>curious</b>, <b>trying</b> stuff, and <b>not quitting</b> when it's hard. (Every bug you squash is practice — you're already doing it!)</p>
+<p>And you've got the tools right now: a computer, Python, the whole internet's knowledge, and a brain that loves puzzles. 🧩</p>
+<p>So start small and <b>real</b>: a program that quizzes your little brother, a silly story maker for your friends, aurora art for your wall, a tiny tool that fixes one annoying thing in your day. Every person in these readings began exactly where you are — as a curious kid. <b>Heja, Aurora!</b> 🦊💚</p>`,
+    think: "What is one small thing in your daily life you'd love to build a program for? That could be your very first real project.",
+    more: { text: "Girls Who Code, and the code.org Hour of Code, are great next steps.", url: "https://girlswhocode.com" },
+  },
+];
+
+/* Reading "shelves" — group the Notebook into themed sections in the Read hub.
+   Every reading id should appear in exactly one shelf, in display order.        */
+const SHELVES = [
+  { id: "machine", emoji: "🖥️", title: "How Computers Really Work",
+    blurb: "Peek inside the machine — bits, brains, and memory.",
+    ids: ["r-bits", "r-inside-the-machine", "r-decide"] },
+  { id: "craft", emoji: "🛠️", title: "The Coder's Craft",
+    blurb: "How real software gets made, and how to think like a coder.",
+    ids: ["r-bug", "r-loops", "r-lists", "r-functions", "r-algorithms", "r-think-like-coder"] },
+  { id: "internet", emoji: "🌐", title: "The Internet & Staying Safe",
+    blurb: "How the whole world gets connected — and how to be safe and kind online.",
+    ids: ["r-internet", "r-secrets", "r-online-safe"] },
+  { id: "ai", emoji: "🤖", title: "The Magic of AI",
+    blurb: "What AI is, how it learns, and how to use it wisely.",
+    ids: ["r-what-ai", "r-see", "r-learn", "r-think", "r-talk", "r-art", "r-everywhere", "r-creative", "r-fair"] },
+  { id: "humans", emoji: "👩‍💻", title: "The Humans of Computing",
+    blurb: "The brilliant, curious people who built this world — and your place in it.",
+    ids: ["r-firstcomputers", "r-turing", "r-history", "r-young"] },
 ];
 
 const WORLDS = [

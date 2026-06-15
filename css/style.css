@@ -514,6 +514,14 @@ details.hint p { margin: 10px 0 4px; }
 .read-card.read { border-color: rgba(43, 240, 168, 0.45); }
 
 .r-tagline { color: var(--violet); font-weight: 800; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
+
+/* shelves (sections in the Read hub) */
+.shelf { margin-top: 32px; }
+.shelf-head { display: flex; align-items: center; gap: 10px; font-size: 1.45rem; margin: 0 0 2px; }
+.shelf-blurb { color: var(--text-dim); margin: 0 0 14px; font-size: 0.96rem; }
+.read-card .r-meta { gap: 8px; }
+.r-level { font-weight: 800; font-size: 0.76rem; color: var(--text-dim); }
+.r-level.deeper { color: var(--violet); }
 .reading-body p { font-size: 1.06rem; }
 .read-more {
   background: rgba(167, 139, 250, 0.1);
